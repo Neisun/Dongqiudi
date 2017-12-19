@@ -1,6 +1,14 @@
 // 专门用来配置axios的基础配置
 import axios from 'axios'
-axios.defaults.baseURL = '/api'
+// console.log(process.env);
+let baseURL = '';
+if (process.env.NODE_ENV==='development') {
+    baseURL = '/api';
+}else {
+    baseURL = 'https://www.dongqiudi.com'
+}
+console.log(baseURL)
+axios.defaults.baseURL = baseURL;
 axios.defaults.timeout = 100000
 // 配置拦截器
 // Add a request interceptor
