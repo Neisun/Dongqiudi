@@ -19,7 +19,7 @@
             >
             <div class="content">
                 <ul class="list">
-                    <li class="item" v-for="item in videoList" :key="item.id">
+                    <router-link :to="{path:'detail',query:{id:item.id}}" tag="li" class="item" v-for="item in videoList" :key="item.id">
                         <div class="left">
                             <img v-lazy="item.litpic" class="poster" :alt="item.title">
                             <img src="../../common/images/play.png" class="play" alt="">
@@ -28,7 +28,7 @@
                             <h3 class="desc">{{item.title}}</h3>
                             <span class="comments">{{item.comments_total}}条评论</span>
                         </div>
-                    </li>
+                    </router-link>
                 </ul>
             </div>
             <Loading v-show="!videoList.length"></Loading>
@@ -65,6 +65,9 @@ export default {
   },
   created() {
     this._getVideo();
+  },
+  mounted() {
+    setTimeout(() => {}, 20);
   },
   methods: {
     changeChannel(index, type) {

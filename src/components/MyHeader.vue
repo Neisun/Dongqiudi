@@ -1,6 +1,7 @@
 <template>
     <div class="myHeader">
         <header>
+            <i class="iconfont icon-fanhui" v-show="detailFlag" @click="back"></i>
             <i class="iconfont icon-zuqiu"></i>
             爆炸足球
             <i class="iconfont icon-siderbar" @click="showSiderBar"></i>
@@ -17,7 +18,8 @@ export default {
     },
     data() {
         return {
-            siderBarFlag:false
+            siderBarFlag:false,
+            detailFlag:false
         }
     },
     methods:{
@@ -26,6 +28,20 @@ export default {
         },
         closeSiderBar() {
             this.siderBarFlag = false;
+        },
+        back(){
+            history.back();
+        }
+    },
+    watch:{
+        '$route'(to,from){
+            // console.log(to);
+            // console.log(from)
+            if (to.name==='detail') {
+                this.detailFlag = true;
+            }else{
+                this.detailFlag = false;
+            }
         }
     }
 }
@@ -45,6 +61,12 @@ export default {
         position: relative;
         .icon-zuqiu {
             font-size: 0.6rem;
+        }
+        .icon-fanhui{
+            font-size: 0.6rem;
+            position: absolute;
+            top: 0;
+            left:0.3rem;
         }
         .icon-siderbar {
             font-size: 0.5rem;

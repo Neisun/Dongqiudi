@@ -14,7 +14,7 @@
                 </Slider>
                 <h2 class="title">最新资讯</h2>
                 <ul class="news-list">
-                    <li class="item" v-for="item in newsList" :key="item.id">
+                    <router-link :to="{path:'detail',query:{id:item.id}}" tag="li" class="item" v-for="item in newsList" :key="item.id">
                         <div class="left">
                             <img v-lazy="item.litpic" alt="item.title">
                         </div>
@@ -23,7 +23,7 @@
                             <p>{{item.description}}</p>
                         </div>
                         <span class="comments">{{item.comments_total}}评论</span>
-                    </li>
+                    </router-link>
                 </ul>
             </div>
             <Loading v-show="!newsList.length"></Loading>

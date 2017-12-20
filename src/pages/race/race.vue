@@ -43,7 +43,11 @@
 <script>
 import Scroll from "../../components/Scroll";
 import { getRace } from "../../api/race";
-import { formatLocalHour, formatTimes,formatLocalDate } from "../../common/js/util";
+import {
+  formatLocalHour,
+  formatTimes,
+  formatLocalDate
+} from "../../common/js/util";
 export default {
   name: "Race",
   components: {
@@ -56,6 +60,9 @@ export default {
   },
   created() {
     this._getRace();
+  },
+  mounted() {
+    setTimeout(() => {}, 20);
   },
   methods: {
     // 本来可以愉快的使用数据，但是我们却发现，数据是按照格林威治时间，而我们的时差是+8小时，那就得转化
@@ -89,7 +96,7 @@ export default {
           } else {
             // +8之后，到了第二天，我们得自己转化
             let t = (item.sort_timestamp + 28800) * 1000;
-            let key = formatTimes(t,'YYYY-MM-DD');
+            let key = formatTimes(t, "YYYY-MM-DD");
             this.filterData(key);
             //  时间同样需要转化
             item.time_utc = formatLocalHour(item.time_utc);
@@ -98,9 +105,9 @@ export default {
         });
         // console.log(this.obj);
         for (const key in this.obj) {
-          this.raceList.push(this.obj[key])
+          this.raceList.push(this.obj[key]);
         }
-        console.log(this.raceList)
+        console.log(this.raceList);
       });
     },
     // 过滤对象用的

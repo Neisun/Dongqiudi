@@ -123,6 +123,9 @@ export default {
   created() {
     this._getRank('team_ranking',this.curLeague);
   },
+  mounted() {
+    setTimeout(() => {}, 20);
+  },
   computed:{
     datas() {
       let obj = {

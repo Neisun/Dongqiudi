@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <MyHeader />
-    <Tab />
+    <Tab v-show="detailFlag" />
     <router-view/>
   </div>
 </template>
@@ -19,7 +19,16 @@ export default {
   },
   data() {
     return {
-      
+      detailFlag:true,
+    }
+  },
+  watch:{
+    '$route'(to,form){
+        if (to.name==='detail') {
+          this.detailFlag = false;
+        }else {
+          this.detailFlag = true;
+        }
     }
   }
 };
