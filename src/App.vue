@@ -2,7 +2,9 @@
   <div id="app">
     <MyHeader />
     <Tab v-show="detailFlag" />
-    <router-view/>
+    <transition name="fade">
+      <router-view/>
+    </transition>
   </div>
 </template>
 
@@ -15,25 +17,32 @@ export default {
   components: {
     MyHeader,
     Tab,
-	Slider,
+    Slider
   },
   data() {
     return {
-      detailFlag:true,
-    }
+      detailFlag: true
+    };
   },
-  watch:{
-    '$route'(to,form){
-        if (to.name==='detail') {
-          this.detailFlag = false;
-        }else {
-          this.detailFlag = true;
-        }
+  watch: {
+    $route(to, form) {
+      if (to.name === "detail") {
+        this.detailFlag = false;
+      } else {
+        this.detailFlag = true;
+      }
     }
   }
 };
 </script>
 
 <style lang="less">
-
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>
