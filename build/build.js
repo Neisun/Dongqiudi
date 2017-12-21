@@ -1,9 +1,23 @@
+// run build 执行的函数，跟我对项目的配置关系不是很大，因为执行prod的功能都放在webpack.prod.conf.js中
 'use strict'
 require('./check-versions')()
 
 process.env.NODE_ENV = 'production'
 
+// 美化bash界面的东西，类似于加载时候的loading圆圈
+/**
+ * 基本用法如下
+ */
+// const ora = require('ora');
+ 
+// const spinner = ora('Loading unicorns').start();
+ 
+// setTimeout(() => {
+//     spinner.color = 'yellow';
+//     spinner.text = 'Loading rainbows';
+// }, 1000);
 const ora = require('ora')
+// The UNIX command rm -rf for node.删除文件夹
 const rm = require('rimraf')
 const path = require('path')
 const chalk = require('chalk')
@@ -13,7 +27,7 @@ const webpackConfig = require('./webpack.prod.conf')
 
 const spinner = ora('building for production...')
 spinner.start()
-
+// 每次我们run build时候，都是会先删除dist文件夹，然后在执行压缩，编译等生产环境所需要的过程，就是打包的过程。
 rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
   if (err) throw err
   webpack(webpackConfig, (err, stats) => {

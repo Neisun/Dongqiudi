@@ -1,9 +1,11 @@
+// 顾名思义，这是定义各个配置文件用到的功能函数
 'use strict'
 const path = require('path')
 const config = require('../config')
+// 提取css的插件，一般是将各个部分的css提取到一个css文件中
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const packageConfig = require('../package.json')
-
+// 资源的路径，这个函数还是比较简单的
 exports.assetsPath = function (_path) {
   const assetsSubDirectory = process.env.NODE_ENV === 'production'
     ? config.build.assetsSubDirectory
@@ -11,7 +13,7 @@ exports.assetsPath = function (_path) {
 
   return path.posix.join(assetsSubDirectory, _path)
 }
-
+// 到底使用什么loader去解析css，这里给出了答案，对各种css，less，sass，stylus用这个函数来解析，棒棒哒
 exports.cssLoaders = function (options) {
   options = options || {}
 

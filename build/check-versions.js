@@ -1,7 +1,10 @@
+// 总之，这是一个检查node，npm版本的工具函数
 'use strict'
+// 终端中出现各种提示的颜色，就是这个插件，另外chalk是粉笔的意思，很形象
 const chalk = require('chalk')
 const semver = require('semver')
 const packageConfig = require('../package.json')
+// 可以项在shell中执行命令的插件
 const shell = require('shelljs')
 
 function exec (cmd) {
